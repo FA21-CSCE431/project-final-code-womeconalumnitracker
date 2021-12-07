@@ -1,0 +1,69 @@
+
+<!-- BEFORE: <h1>Requests</h1> -->
+<p class="h1">View Requests</p>
+<br />
+
+
+<script>
+  var headers = [
+    {
+      text: 'First Name',
+      align: 'start',
+      value: 'first_name',
+    },
+    {
+      text: 'Last Name',
+      value: 'last_name',
+    },
+    {
+      text: 'Event ID',
+      value: 'event_id',
+    },
+    
+    {
+      text: 'Date of Request',
+      value: 'date_of_request',
+    },
+    {
+      text: 'Points Requested',
+      value: 'points_requested',
+    },
+    {
+      text: 'Request Type',
+      value: 'request_type',
+    },
+    {
+      text: 'Approvals',
+      value: "approvals",
+    },
+  ];
+
+  var d = <%=@requests.to_json.html_safe%>
+  var s = <%=@students.to_json.html_safe%>
+
+  var sMap = {}
+  for(var __ in s) {
+    var e = s[__]
+    sMap[e["UIN"]] = [e["first_name"], e["last_name"]]
+  }
+
+
+  d2 = []
+  for(var e in d){
+      var e2 = d[e]
+      e2.first_name = sMap[e2.UIN][0]
+      e2.last_name = sMap[e2.UIN][1]
+      d2.push(e2)
+  }
+
+  var url_path = "requests"
+</script>
+
+<%= render partial: "partials/crud_table" %>
+
+<br />
+<%= link_to(new_request_path) do %>
+  <button type="button" class="btn btn-primary btn-sm px-3"> 
+    Create new request
+  </button>
+<% end %>

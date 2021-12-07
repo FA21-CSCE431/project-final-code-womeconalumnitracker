@@ -1,0 +1,10 @@
+<%= stylesheet_link_tag 'login', media: 'all', 'data-turbolinks-track' => true %>
+
+<div class="content-wrapper">
+  <div class="card card--9">
+    <h2 class="card__title">You're Logged out!</h2>
+    <img class="card__img" src="https://static.wixstatic.com/media/df5af5_a47afb826f7846659775e478b7ee3516~mv2.png/v1/fill/w_750,h_1000,al_c,q_90,usm_0.66_1.00_0.01/NUtrition%20and%20Dietetic%20Association.webp" alt="">
+    <center><p class="card__text">Log in to the Admin Dashboard</p></center>
+    <center><%= link_to "Sign in with Google", admin_google_oauth2_omniauth_authorize_path, method: :post %></center>
+  </div>
+</div>

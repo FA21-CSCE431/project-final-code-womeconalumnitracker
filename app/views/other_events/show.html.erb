@@ -1,0 +1,26 @@
+<br />
+<div class="card text-white bg-dark mb-3">
+  <div class="card-header">Other Event Details: </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <strong>Event Name:</strong> <%= @other_event.name %>
+    </li>
+    <li class="list-group-item">
+      <strong>Event type:</strong> <%= @other_event.event_type %>
+    </li>
+  </ul>
+</div>
+<br />
+
+<%= link_to(edit_other_event_path(@other_event)) do %>
+  <button type="button" class="btn btn-info btn-sm px-3"> 
+    Edit
+  </button>
+<% end %>
+<br />
+<br />
+<%= link_to(other_events_path) do %>
+  <button type="button" class="btn btn-primary btn-sm px-3"> 
+    Back to all events
+  </button>
+<% end %>

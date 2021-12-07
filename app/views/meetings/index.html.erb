@@ -1,0 +1,41 @@
+
+<p class="h1">View Meetings</p>
+<br />
+
+<script>
+  var headers = [
+    {
+      text: 'Meeting name',
+      align: 'start',
+      value: 'meeting_name',
+    },
+    {
+      text: 'Date',
+      value: 'date',
+    },
+    {
+      text: 'Location',
+      value: 'location',
+    },
+    {
+      text: 'Start time',
+      value: 'start_time',
+    },
+    {
+      text: 'Options',
+      value: "options",
+    },
+  ];
+
+  var d = <%=@meetings.to_json.html_safe%>
+  var url_path = "meetings"
+</script>
+
+<%= render partial: "partials/crud_table" %>
+
+<br />
+<%= link_to(new_meeting_path) do %>
+  <button type="button" class="btn btn-primary btn-sm px-3"> 
+    Create new meeting
+  </button>
+<% end %>

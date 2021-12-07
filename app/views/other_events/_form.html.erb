@@ -1,0 +1,27 @@
+<%= form_with(model: other_event) do |form| %>
+  <% if other_event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(other_event.errors.count, "error") %> prohibited this other_event from being saved:</h2>
+
+      <ul>
+        <% other_event.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-outline mb-4" style="max-width: 500px;">
+    <%= form.text_field :name, class: 'form-control' %>
+    <%= form.label :name, class: 'form-label'%>
+  </div>
+
+  <div class="field form-outline mb-4" style="max-width: 500px;">
+    <%= form.select :event_type, ['Volunteer', 'Social'], class: 'form-control' %>
+    <%= form.label :event_type, class: 'form-label' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit :class => "btn btn-success" %>
+  </div>
+<% end %>

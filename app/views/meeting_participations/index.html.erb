@@ -1,0 +1,64 @@
+
+<h1>Meeting Participations</h1>
+
+<br />
+<script>
+//    {
+//      text: 'UIN',
+//      align: 'start',
+//      value: 'UIN',
+//    },
+  var headers = [
+    {
+      text: 'First Name',
+      align: 'start',
+      value: 'first_name',
+    },
+    {
+      text: 'Last Name',
+      value: 'last_name',
+    },
+    {
+      text: 'Meeting',
+      value: 'meeting_name',
+    },
+    {
+      text: 'Time attended',
+      value: 'created_at',
+    },
+    {
+      text: 'Delete',
+      value: "deleteonly",
+    }
+  ];
+
+  var d = <%=@meeting_participations.to_json.html_safe%>
+  var s = <%=@students.to_json.html_safe%>
+
+  var sMap = {}
+  for(var __ in s) {
+    var e = s[__]
+    sMap[e["UIN"]] = [e["first_name"], e["last_name"]]
+  }
+
+
+  d2 = []
+  for(var e in d){
+      var e2 = d[e]
+      e2.first_name = sMap[e2.UIN][0]
+      e2.last_name = sMap[e2.UIN][1]
+      d2.push(e2)
+  }
+
+  var url_path = "meeting_participations"
+</script>
+
+<%= render partial: "partials/crud_table" %>
+
+<br>
+
+<%= link_to(new_meeting_participation_path) do %>
+  <button type="button" class="btn btn-primary btn-sm px-3"> 
+    Create New Meeting Participation
+  </button>
+<% end %>

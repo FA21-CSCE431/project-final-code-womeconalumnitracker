@@ -1,0 +1,41 @@
+
+<!-- BEFORE: <h1>Other Events</h1> -->
+<p class="h1">View Other Events</p>
+<br />
+
+
+<script>
+  var headers = [
+    {
+      text: 'Event name',
+      align: 'start',
+      value: 'name',
+    },
+    {
+      text: 'Event type',
+      value: 'event_type',
+    },
+    {
+      text: 'Options',
+      value: "options",
+    },
+  ];
+
+  var d = <%=@other_events.to_json.html_safe%>
+  var url_path = "other_events"
+</script>
+
+<%= render partial: "partials/crud_table" %>
+
+<br />
+<%= link_to(new_other_event_path) do %>
+  <button type="button" class="btn btn-primary btn-sm px-3"> 
+    Create new other event
+  </button>
+<% end %>
+
+
+
+
+
+

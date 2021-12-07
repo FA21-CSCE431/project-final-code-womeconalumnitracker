@@ -1,0 +1,40 @@
+<%= form_with(model: request) do |form| %>
+  <% if request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(request.errors.count, "error") %> prohibited this request from being saved:</h2>
+
+      <ul>
+        <% request.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :event_id %>
+    <% options = options_from_collection_for_select(@other_events, 'id', 'name') %>
+    <%= form.select :event_id, options %>
+  </div>
+
+  <% if @request.new_record? %>
+    <div class="field">
+      <%= form.label :UIN %>
+      <%= form.text_field :UIN %>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :points_requested %>
+    <%= form.number_field :points_requested %>
+  </div>
+
+  <div class="field">
+    <%= form.label :type %>
+    <%= form.select :request_type, ['Volunteer', 'Social'] %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

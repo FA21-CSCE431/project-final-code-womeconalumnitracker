@@ -1,0 +1,44 @@
+<br />
+<div class="card text-white bg-dark mb-3">
+  <div class="card-header">Student Details: </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <strong>First name:</strong> <%= @student.first_name %>
+    </li>
+    <li class="list-group-item">
+      <strong>Last name:</strong> <%= @student.last_name %>
+    </li>
+    <li class="list-group-item">
+      <strong>Meeting points:</strong> <%= @student.meeting_points %>
+    </li>
+    <li class="list-group-item">
+      <strong>Volunteer points:</strong> <%= @student.volunteer_points %>
+    </li>
+    <li class="list-group-item">
+      <strong>Social points:</strong> <%= @student.social_points %>
+    </li>
+    <li class="list-group-item">
+      <strong>Total points:</strong> <%= @student.total_points %>
+    </li>
+    <li class="list-group-item">
+      <strong>Active member:</strong> <%= @student.active_member %>
+    </li>
+    <li class="list-group-item">
+      <strong>Paid dues:</strong> <%= @student.paid_dues %>
+    </li>
+  </ul>
+</div>
+<br />
+
+<%= link_to(edit_student_path(@student)) do %>
+  <button type="button" class="btn btn-info btn-sm px-3"> 
+    Edit
+  </button>
+<% end %>
+<br />
+<br />
+<%= link_to(students_path) do %>
+  <button type="button" class="btn btn-primary btn-sm px-3"> 
+    Back to dashboard
+  </button>
+<% end %>

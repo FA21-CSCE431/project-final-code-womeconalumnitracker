@@ -1,0 +1,21 @@
+<br />
+<h1 class="h1">Editing Other Event</h1>
+
+<br />
+
+
+<%= render 'form', other_event: @other_event %>
+
+<br />
+<%= link_to(@other_event) do %>
+  <button type="button" class="btn btn-primary btn-sm px-3"> 
+    View Event Details
+  </button>
+<% end %>
+<br />
+<br />
+<%= link_to(other_events_path) do %>
+  <button type="button" class="btn btn-primary btn-sm px-3"> 
+    Back to all events
+  </button>
+<% end %>

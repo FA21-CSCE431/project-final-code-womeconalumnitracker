@@ -1,0 +1,26 @@
+<p>
+  <strong>First name:</strong>
+  <%= @request.student.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @request.student.last_name %>
+</p>
+
+<p>
+  <strong>Date of request:</strong>
+  <%= @request.date_of_request %>
+</p>
+
+<p>
+  <strong>Points requested:</strong>
+  <%= @request.points_requested %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @request.request_type %>
+</p>
+
+<%= link_to 'Back', requests_path %>

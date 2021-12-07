@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css?family=El+Messiri');
+
+// html {
+//   box-sizing: border-box;
+
+//   *,
+//   *:after,
+//   *:before {
+//     box-sizing: inherit;
+//   }
+// }
+
+.content-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 0;
+  font-family: 'El Messiri', sans-serif;
+  
+
+
+  &::before {
+    content: ' ';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://media.istockphoto.com/photos/varied-food-carbohydrates-protein-vegetables-fruits-dairy-legumes-on-picture-id1218254547?b=1&k=20&m=1218254547&s=170667a&w=0&h=mOEC7x7qU5NC78mCULs-jAPeLkxy8opOvIbGSnwmAyw=') 0 0/cover no-repeat;
+    z-index: -1;
+  }
+}
+
+
+.card {
+  position: relative;
+  max-width: 26.5em;
+  margin: 1rem auto;
+  padding: 1em;
+  background: #fff;
+}
+
+.card__title {
+  margin: 0 auto 1em;
+  color: #333;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.card__img {
+  // display: block;
+  // width: 20em;
+  // max-width: 100%;
+  // margin: 1em auto;
+  // border-radius: 2px;
+  max-width: 75%!important;
+  margin-left: 12.5%;
+  display: block;
+
+  -webkit-transform:rotate(270deg);  
+  -moz-transform: rotate(270deg);  
+  -ms-transform: rotate(270deg);  
+  -o-transform: rotate(270deg);  
+  transform: rotate(270deg);
+}
+
+.card__text {
+  margin: 2em 5%;
+  color: #646464;
+}
+
+.card__btn {
+  display: table;
+  padding: .7em 4em;
+  background: #ddba76;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  margin: 1em auto 0;
+}
+
+
+
+/**
+ * Card #9
+ */
+
+.card--9 {
+
+  --mouseX9: 0;
+  --mouseY9: 0;
+  --padding: 1em;
+
+  background: #fff;
+  position: relative;
+
+  &::before {
+    display: block;
+    position: absolute;
+    top: calc(var(--padding) * -1);
+    bottom: calc(var(--padding) * -1);
+    left: calc(var(--padding) * -1);
+    right: calc(var(--padding) * -1);
+    content: ' ';
+    z-index: -1;
+    background: #333;
+    opacity: .9;
+    transform: perspective(700px) rotateX(calc(var(--mouseY9) * -1deg)) rotateY(calc(var(--mouseX9) * 1deg));
+  }
+}

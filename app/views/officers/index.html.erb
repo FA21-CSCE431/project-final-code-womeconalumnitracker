@@ -1,0 +1,27 @@
+<h1>Officers</h1>
+
+<p>Logged in as: <%= session[:email] %></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @officers.each do |officer| %>
+      <tr>
+        <td><%= officer.email %></td>
+        <td><%= link_to 'Show', officer %></td>
+        <td><%= link_to 'Edit', edit_officer_path(officer) %></td>
+        <td><%= link_to 'Destroy', officer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Officer', new_officer_path %>

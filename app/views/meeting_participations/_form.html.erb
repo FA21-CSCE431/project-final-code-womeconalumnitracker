@@ -1,0 +1,33 @@
+<%= form_with(model: meeting_participation) do |form| %>
+  <% if meeting_participation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(meeting_participation.errors.count, "error") %> prohibited this meeting_participation from being saved:</h2>
+
+      <ul>
+        <% meeting_participation.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if params[:meeting_name] == nil %>
+    <div class="field">
+      <%= form.label :meeting_name %>
+      <%= form.text_field :meeting_name %>
+    </div>
+  <% else %>
+    <%= form.hidden_field :meeting_name, value: params[:meeting_name] %>
+  <% end %>
+
+  <% if @meeting_participation.new_record? %>
+    <div class="field">
+      <%= form.label :UIN %>
+      <%= form.text_field :UIN %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

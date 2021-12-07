@@ -1,0 +1,12 @@
+<br />
+<h1 class="h1">New Student</h1>
+
+<br />
+<%= render 'form', student: @student %>
+
+<br />
+<%= link_to(students_path) do %>
+  <button type="button" class="btn btn-primary btn-sm px-3"> 
+    Back to dashboard
+  </button>
+<% end %>
