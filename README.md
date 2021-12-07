@@ -1,26 +1,61 @@
 # README
 
-# changes
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Stack:
 
-Things you may want to cover:
+* Rails 6.1 +
+* Ruby 3.0.2 +
+* PostgreSQL
 
-* Ruby version
+# Dependencies 
+ See the [Gemfile.lock](./Gemfile.lock)
 
-* System dependencies
+# Core features:
 
-* Configuration
+Add students to the club
+Give the students points
+Automatically update whether students are part of the club using their points and whether they have paid dues
+Be able to add officers to the club
+Set up meetings
+Sign in to meetings, which automatically updates student points
+Submit requests for points from other meetings, which can be approved by officers.  This will give students the points they requested
+Create other meetings
+Show a leaderboard of students based on how many points they have
 
-* Database creation
 
-* Database initialization
+## Authentication
 
-* How to run the test suite
+* Log in with Google Account under the Texas A&M University System domain
 
-* Services (job queues, cache servers, search engines, etc.)
+*** Ex. student@tamu.edu
 
-* Deployment instructions
+## Authorization
 
-* ...
+* User roles
+* Role-based access to different features
+* Admin can edit user roles
+
+## Connected services:
+
+* Google oAuth API
+
+# Installation
+
+console:
+```
+git clone https://github.com/tamu-nutrition/WebApp.git
+cd WebApp
+bundle install
+yarn install
+rails db:create db:migrate
+```
+# Start the Web Server
+```
+rails s -b 0.0.0.0
+```
+# Run All Tests
+```
+rails rspec .
+
+```
+
