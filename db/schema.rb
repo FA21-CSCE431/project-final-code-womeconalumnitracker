@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_06_031601) do
+ActiveRecord::Schema.define(version: 2021_11_02_052857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,18 +53,19 @@ ActiveRecord::Schema.define(version: 2021_12_06_031601) do
     t.index ["email"], name: "index_admins_on_email", unique: true
   end
 
-  create_table "events", force: :cascade do |t|
-    t.integer "event_id"
-    t.string "event_name"
+  create_table "meeting_list", force: :cascade do |t|
+    t.integer "meeting_id"
+    t.string "meeting_name"
+    t.date "date"
+    t.string "location"
+    t.datetime "start_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.date "event_date"
   end
 
   create_table "meeting_participations", force: :cascade do |t|
-    t.string "meeting_name"
     t.integer "meeting_id"
-    t.integer "UIN"
+    t.string "UIN"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -86,27 +87,10 @@ ActiveRecord::Schema.define(version: 2021_12_06_031601) do
   end
 
   create_table "other_events", force: :cascade do |t|
-    t.string "event_type"
-    t.integer "number_participation", default: 0
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "name"
-  end
-
-  create_table "participations", force: :cascade do |t|
     t.integer "event_id"
-    t.string "uin"
-    t.string "event_name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "people", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "class_year"
-    t.string "email"
-    t.string "phone_number"
+    t.integer "point_worth"
+    t.string "event_type"
+    t.integer "number_participation"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -120,7 +104,6 @@ ActiveRecord::Schema.define(version: 2021_12_06_031601) do
     t.boolean "approved"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "request_type"
   end
 
   create_table "students", primary_key: "UIN", id: :serial, force: :cascade do |t|
@@ -130,16 +113,12 @@ ActiveRecord::Schema.define(version: 2021_12_06_031601) do
     t.integer "volunteer_points"
     t.integer "social_points"
     t.integer "total_points"
-    t.boolean "participating"
-    t.string "meeting_name"
     t.boolean "active_member"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "paid_dues"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "meeting_participations", "students", column: "UIN", primary_key: "UIN"
   add_foreign_key "requests", "students", column: "UIN", primary_key: "UIN"
 end

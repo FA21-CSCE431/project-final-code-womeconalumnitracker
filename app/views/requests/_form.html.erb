@@ -13,16 +13,18 @@
 
   <div class="field">
     <%= form.label :event_id %>
-    <% options = options_from_collection_for_select(@other_events, 'id', 'name') %>
-    <%= form.select :event_id, options %>
+    <%= form.number_field :event_id %>
   </div>
 
-  <% if @request.new_record? %>
-    <div class="field">
-      <%= form.label :UIN %>
-      <%= form.text_field :UIN %>
-    </div>
-  <% end %>
+  <div class="field">
+    <%= form.label :UIN %>
+    <%= form.text_field :UIN %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_of_request %>
+    <%= form.date_select :date_of_request %>
+  </div>
 
   <div class="field">
     <%= form.label :points_requested %>
@@ -30,8 +32,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :type %>
-    <%= form.select :request_type, ['Volunteer', 'Social'] %>
+    <%= form.label :request_time %>
+    <%= form.text_field :request_time %>
   </div>
 
   <div class="actions">

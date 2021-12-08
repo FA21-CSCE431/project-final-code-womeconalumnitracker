@@ -5,7 +5,4 @@
 # Model contains information needed to identify a student
 class Request < ApplicationRecord
   belongs_to :student, foreign_key: :UIN
-  before_create do 
-    self.date_of_request = Date.today
-  end
 end

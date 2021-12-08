@@ -1,69 +1,41 @@
+<%= render partial: "partials/navbar", locals: {loggedIn: false, page:"requests"} %>
 
-<!-- BEFORE: <h1>Requests</h1> -->
-<p class="h1">View Requests</p>
-<br />
+<style type="text/css">
+    #title {display:inline-block;margin-right:10px;} 
+    #signout {display:inline-block;float:right;} 
+</style>
 
-
-<script>
-  var headers = [
-    {
-      text: 'First Name',
-      align: 'start',
-      value: 'first_name',
-    },
-    {
-      text: 'Last Name',
-      value: 'last_name',
-    },
-    {
-      text: 'Event ID',
-      value: 'event_id',
-    },
-    
-    {
-      text: 'Date of Request',
-      value: 'date_of_request',
-    },
-    {
-      text: 'Points Requested',
-      value: 'points_requested',
-    },
-    {
-      text: 'Request Type',
-      value: 'request_type',
-    },
-    {
-      text: 'Approvals',
-      value: "approvals",
-    },
-  ];
-
-  var d = <%=@requests.to_json.html_safe%>
-  var s = <%=@students.to_json.html_safe%>
-
-  var sMap = {}
-  for(var __ in s) {
-    var e = s[__]
-    sMap[e["UIN"]] = [e["first_name"], e["last_name"]]
-  }
-
-
-  d2 = []
-  for(var e in d){
-      var e2 = d[e]
-      e2.first_name = sMap[e2.UIN][0]
-      e2.last_name = sMap[e2.UIN][1]
-      d2.push(e2)
-  }
-
-  var url_path = "requests"
-</script>
-
-<%= render partial: "partials/crud_table" %>
-
-<br />
-<%= link_to(new_request_path) do %>
-  <button type="button" class="btn btn-primary btn-sm px-3"> 
-    Create new request
-  </button>
+<h1>Requests</h1>
+<% if @requests != nil %>
+  <table>
+    <thead>
+      <tr>
+        <th>| -Event ID- |</th>
+        <th> -----UIN----- |</th>
+        <th> -Date of Request- |</th>
+        <th> -Points- |</th>
+        <th> -Name- |</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @requests.each do |request| %>
+        <tr>
+          <td><%= request.event_id %></td>
+          <td><%= request.UIN %></td>
+          <td><%= request.date_of_request %></td>
+          <td><%= request.points_requested %></td>
+          <td><%= request.student.first_name %></td>
+          <td><%= link_to 'Show', request %></td>
+          <td><%= link_to 'Edit', edit_request_path(request) %></td>
+          <td><%= link_to 'Remove', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Accept', accept_request_path(:id => request.id), method: :post %></td>
+          <td><%= link_to 'Deny', deny_request_path(:id => request.id), method: :post %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>
+
+<br>
+<%= link_to 'Add Request', new_request_path %>

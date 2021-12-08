@@ -12,13 +12,23 @@
   <% end %>
 
   <div class="field form-outline mb-4" style="max-width: 500px;">
-    <%= form.text_field :name, class: 'form-control' %>
-    <%= form.label :name, class: 'form-label'%>
+    <%= form.number_field :event_id, class: 'form-control' %>
+    <%= form.label :event_id, class: 'form-label'%>
   </div>
 
   <div class="field form-outline mb-4" style="max-width: 500px;">
-    <%= form.select :event_type, ['Volunteer', 'Social'], class: 'form-control' %>
+    <%= form.number_field :point_worth, class: 'form-control' %>
+    <%= form.label :point_worth, class: 'form-label' %>
+  </div>
+
+  <div class="field form-outline mb-4" style="max-width: 500px;">
+    <%= form.text_field :event_type, class: 'form-control' %>
     <%= form.label :event_type, class: 'form-label' %>
+  </div>
+
+  <div class="field form-outline mb-4" style="max-width: 500px;">
+    <%= form.number_field :number_participation, class: 'form-control' %>
+    <%= form.label :number_participation, class: 'form-label' %>
   </div>
 
   <div class="actions">

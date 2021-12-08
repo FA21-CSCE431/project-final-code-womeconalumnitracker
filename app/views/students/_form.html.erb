@@ -11,55 +11,47 @@
     </div>
   <% end %>
 
-  <% if @student.new_record? %>
-    <div class="field form-outline mb-4" style="max-width: 500px;">
-      <% if params[:participating] == nil %>
-        <%= form.text_field :UIN, class: 'form-control' %>
-        <%= form.label :UIN, class: 'form-label' %>
-      <% else %>
-        <%= form.hidden_field :UIN, class: 'form-control', value: params[:UIN] %>
-      <% end %>
-    </div>
-  <% end %>
-
-  <div class="field form-outline mb-4" style="max-width: 500px;">
-    <%= form.text_field :first_name, class: 'form-control' %>
-    <%= form.label :first_name, class: 'form-label' %>
+  <div class="field">
+    <%= form.label :UIN %>
+    <%= form.text_field :UIN %>
   </div>
 
-  <div class="field form-outline mb-4" style="max-width: 500px;">
-    <%= form.text_field :last_name, class: 'form-control' %>
-    <%= form.label :last_name, class: 'form-label' %>
+  <div class="field">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name %>
   </div>
 
-  <div class="field form-outline mb-4" style="max-width: 500px;">
-    <%= form.check_box :paid_dues, class: 'form-check-input' %>
-    <%= form.label :paid_dues, class: 'form-label' %>
+  <div class="field">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name %>
   </div>
 
-  <% if params[:participating] == nil %>
-    <%= form.label :meeting_points, class: 'form-label' %>
+  <div class="field">
+    <%= form.label :meeting_points %>
     <%= form.number_field :meeting_points %>
-    <br>
-    <%= form.label :volunteer_points, class: 'form-label' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :volunteer_points %>
     <%= form.number_field :volunteer_points %>
-    <br>
-    <%= form.label :social_points, class: 'form-label' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :social_points %>
     <%= form.number_field :social_points %>
-    <br>
-    <%= form.hidden_field :participating, value: false %>
-    <%= form.hidden_field :active_member%>
-    <%= form.hidden_field :meeting_name, value: 'N/A' %>
-  <% else %>
-    <%= form.hidden_field :meeting_points %>
-    <%= form.hidden_field :volunteer_points%>
-    <%= form.hidden_field :social_points%>
-    <%= form.hidden_field :participating, value: true %>
-    <%= form.hidden_field :active_member %>
-    <%= form.hidden_field :meeting_name, value: params[:meeting_name] %>
-  <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :total_points %>
+    <%= form.number_field :total_points %>
+  </div>
+
+  <div class="field">
+    <%= form.label :active_member %>
+    <%= form.check_box :active_member %>
+  </div>
 
   <div class="actions">
-    <%= form.submit :class => "btn btn-success" %>
+    <%= form.submit %>
   </div>
 <% end %>

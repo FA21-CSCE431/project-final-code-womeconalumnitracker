@@ -24,13 +24,6 @@ class OtherEventsController < ApplicationController
 
   # POST /other_events or /other_events.json
   def create
-    if authenticate_officer == false
-      respond_to do |format|
-        format.html { redirect_to students_path, notice: "You are not authorized to perform this action!"}
-        format.json {render :show, status: :bad_request, location: @student }
-      end
-      return nil
-    end
     @other_event = OtherEvent.new(other_event_params)
 
     respond_to do |format|
@@ -46,13 +39,6 @@ class OtherEventsController < ApplicationController
 
   # PATCH/PUT /other_events/1 or /other_events/1.json
   def update
-    if authenticate_officer == false
-      respond_to do |format|
-        format.html { redirect_to students_path, notice: "You are not authorized to perform this action!"}
-        format.json {render :show, status: :bad_request, location: @student }
-      end
-      return nil
-    end
     respond_to do |format|
       if @other_event.update(other_event_params)
         format.html { redirect_to @other_event, notice: 'Other event was successfully updated.' }
@@ -66,13 +52,6 @@ class OtherEventsController < ApplicationController
 
   # DELETE /other_events/1 or /other_events/1.json
   def destroy
-    if authenticate_officer == false
-      respond_to do |format|
-        format.html { redirect_to students_path, notice: "You are not authorized to perform this action!"}
-        format.json {render :show, status: :bad_request, location: @student }
-      end
-      return nil
-    end
     @other_event.destroy
     respond_to do |format|
       format.html { redirect_to other_events_url, notice: 'Other event was successfully destroyed.' }
@@ -87,16 +66,8 @@ class OtherEventsController < ApplicationController
     @other_event = OtherEvent.find(params[:id])
   end
 
-  def authenticate_officer
-    @officers = Officer.all
-    @officers.each do |officer|
-      return true if officer.email == session[:email]
-    end
-    false
-  end
-
   # Only allow a list of trusted parameters through.
   def other_event_params
-    params.require(:other_event).permit(:id, :event_type, :number_participation, :name)
+    params.require(:other_event).permit(:event_id, :point_worth, :event_type, :number_participation)
   end
 end

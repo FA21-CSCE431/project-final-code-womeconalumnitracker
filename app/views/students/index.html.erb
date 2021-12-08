@@ -1,60 +1,34 @@
-<style>
-header {
-	text-align: center;
-	width: 100%;
-	height: auto;
-	background-size: cover;
-	overflow: hidden;
-	border-radius: 0 0 85% 85% / 30%;
-}
-header .overlay{
-	width: 100%;
-	height: 100%;
-	padding: 50px;
-	color: #FFF;
-	text-shadow: 1px 1px 1px #333;
-  background-image: linear-gradient( 135deg, #4CB8C4 10%, #3CD3AD 100%);
-	
-}
+<%= render partial: "partials/navbar", locals: {loggedIn: false, page:"students"} %>
 
-.better-h1 {
-	font-family: 'Roboto', cursive;
-	font-size: 40px;
-	margin-bottom: 30px;
-}
-
+<style type="text/css">
+    #title {display:inline-block;margin-right:10px;} 
+    #signout {display:inline-block;float:right;} 
 </style>
 
+<div id="title">
+    <h1>TAMU Nutrition & Dietetics Association</h1>
+</div>
+<div id="signout">
+    <h3><%= link_to "Click here to test Officer mode", testmode_officers_path %><h3>
+</div>
 
-<header>
-	<div class="overlay">
-    <h1 class="better-h1">TAMU Nutrition & Dietetics Association</h1>
-	</div>
-</header>
-
-<br/>
-
-<!-- 
-<table id="students-table" class="display" style="width:100%">
+<table>
   <thead>
     <tr>
-      <th>UIN</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Meeting Points</th>
-      <th>Volunteer Points</th>
-      <th>Social Points</th>
-      <th>Total Points</th>
-      <th>Active Member</th>
-      <th>Paid Dues</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>|--UIN--|</th>
+      <th>|--First Name--|</th>
+      <th>|--Last Name--|</th>
+      <th>|--Meeting Points--|</th>
+      <th>|--Volunteer Points--|</th>
+      <th>|--Social Points--|</th>
+      <th>|--Total Points--|</th>
+      <th>|--Active Member--|</th>
+      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @students.order(:total_points).each do |student| %>
+    <% @students.each do |student| %>
       <tr>
         <td><%= student.UIN %></td>
         <td><%= student.first_name %></td>
@@ -64,109 +38,14 @@ header .overlay{
         <td><%= student.social_points %></td>
         <td><%= student.total_points %></td>
         <td><%= student.active_member %></td>
-        <td><%= student.paid_dues %></td>
-        <td>
-          <%= link_to(edit_student_path(student)) do %>
-            <div style="text-align:center;">
-              <button type="button" class="btn btn-info btn-sm px-3">
-                <i class="fas fa-edit"></i>
-              </button>
-            </div>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to(student, method: :delete, data: { confirm: 'Are you sure want to delete?' }) do %>
-            <div style="text-align:center;">
-              <button type="button" class="btn btn-danger btn-sm px-3"> 
-                <i class="fas fa-times"></i>
-              </button>
-            </div>
-          <% end %>
-        </td>
+        <td><%= link_to 'Show', student %></td>
+        <td><%= link_to 'Edit', edit_student_path(student) %></td>
+        <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-
--->
-
-
-
-<script>
-  var headers = [
-    {
-      text: 'First Name',
-      align: 'start',
-      value: 'first_name',
-    },
-    {
-      text: 'Last Name',
-      value: 'last_name',
-    },
-    {
-      text: 'Meeting Points',
-      value: 'meeting_points',
-    },
-    {
-      text: 'Volunteer Points',
-      value: 'volunteer_points',
-    },
-    {
-      text: 'Social Points',
-      value: "social_points",
-    },
-    {
-      text: 'Total Points',
-      value: "total_points",
-    },
-    {
-      text: 'Active Member',
-      value: "active_member",
-    },
-    {
-      text: 'Paid Dues',
-      value: "paid_dues",
-    },
-    {
-      text: 'Options',
-      value: "options",
-    }
-  ];
-
-  var d = <%=@students.to_json.html_safe%>
-  d2 = []
-  for(var e in d){
-      var e2 = d[e]
-      e2.total_points = e2.volunteer_points + e2.social_points + e2.meeting_points
-      e2.paid_dues = (e2.paid_dues) ? "Yes": "No"
-      e2.active_member = (e2.active_member) ? "Yes": "No"
-      d2.push(e2)
-  }
-  console.log(d2)
-
-  d = d2;
-  d.sort(function(a,b){return a.total_points - b.total_points});
-  d.reverse();
-  var url_path = "students"
-
-</script>
-
-<%= render partial: "partials/crud_table" %>
-
-
-
-
 <br>
 
-<%= link_to(new_student_path) do %>
-  <button type="button" class="btn btn-primary btn-sm px-3"> 
-    Create new student
-  </button>
-<% end %>
-
-<script>
-$(document).ready( function () {
-    $('#students-table').DataTable();
-} );
-</script>
+<%= link_to 'New Student', new_student_path %>

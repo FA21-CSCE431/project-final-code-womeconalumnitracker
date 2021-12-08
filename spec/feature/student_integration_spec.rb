@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Student', type: :feature do
   scenario 'Adding student' do
     visit students_url
-    login()
+    login
     click_on 'New Student'
     # puts page.html
     fill_in 'student_UIN', with: '111000111'

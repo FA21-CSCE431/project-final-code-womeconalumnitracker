@@ -1,6 +1,13 @@
+<p id="notice"><%= notice %></p>
+
 <p>
   <strong>Meeting:</strong>
-  <%= @meeting_participation.meeting_name %>
+  <%= @meeting_participation.meeting_id %>
+</p>
+
+<p>
+  <strong>Uin:</strong>
+  <%= @meeting_participation.UIN %>
 </p>
 
 <%= link_to 'Edit', edit_meeting_participation_path(@meeting_participation) %> |

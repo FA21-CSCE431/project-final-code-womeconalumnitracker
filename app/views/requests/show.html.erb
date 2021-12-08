@@ -1,11 +1,13 @@
+<p id="notice"><%= notice %></p>
+
 <p>
-  <strong>First name:</strong>
-  <%= @request.student.first_name %>
+  <strong>Event:</strong>
+  <%= @request.event_id %>
 </p>
 
 <p>
-  <strong>Last name:</strong>
-  <%= @request.student.last_name %>
+  <strong>Uin:</strong>
+  <%= @request.UIN %>
 </p>
 
 <p>
@@ -19,8 +21,19 @@
 </p>
 
 <p>
-  <strong>Type:</strong>
-  <%= @request.request_type %>
+  <strong>Request time:</strong>
+  <%= @request.request_time %>
 </p>
 
+<p>
+  <strong>Approved:</strong>
+  <%= @request.approved %>
+</p>
+
+<p>
+  <strong>Id:</strong>
+  <%= @request.id %>
+</p>
+
+<%= link_to 'Edit', edit_request_path(@request) %> |
 <%= link_to 'Back', requests_path %>

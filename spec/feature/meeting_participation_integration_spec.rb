@@ -2,6 +2,12 @@
 
 require 'rails_helper'
 
+def login
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google]
+  visit students_url
+  click_link 'Sign in with Google'
+end
+
 RSpec.describe 'Meeting Participation', type: :feature do
 
   scenario 'deleting meeting participation' do

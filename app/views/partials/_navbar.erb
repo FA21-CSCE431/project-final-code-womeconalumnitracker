@@ -1,11 +1,6 @@
-<style>
-.active {
-}
-</style>
-
 <!-- Navbar -->
-<div class="container-nav-wrapper" style="background-color: #262626!important;">
-<div class="container">
+<div class="blackOffset" style="position: fixed; top: 0px; left: 0px; width: 100vw; height: 53px; background-color: #262626;z-index: -1">&nbsp;</div>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="">
   <!-- Container wrapper -->
   <div class="container-fluid">
@@ -27,19 +22,45 @@
       <!-- Navbar brand -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a id="a-Dashboard" class="nav-link" href="/students">Leaderboards</a>
+          <% if page == 'home_page' %>
+            <a class="nav-link active" href="/">Dashboard</a>
+          <% end %>
+          <% if page != 'home_page' %>
+            <a class="nav-link" href="/">Dashboard</a>
+          <% end %>
         </li>
         <li class="nav-item">
-            <a id="a-Participation_List"class="nav-link" href="/meeting_participations">Participation List</a>
+          <% if page == 'participation_list' %>
+            <a class="nav-link active" href="/meeting_participations">Participation List</a>
+          <% end %>
+          <% if page != 'participation_list' %>
+            <a class="nav-link" href="/meeting_participations">Participation List</a>
+          <% end %>
           </li>
         <li class="nav-item">
-            <a id="a-Meetings" class="nav-link" href="/meetings">Meetings</a>
+          <% if page == 'home_page' %>
+            <a class="nav-link active" href="/meetings">Meetings</a>
+          <% end %>
+          <% if page != 'home_page' %>
+            <a class="nav-link" href="/meetings">Meetings</a>
+          <% end %>
         </li>
         <li class="nav-item">
-            <a id="a-Event_List" class="nav-link" href="/other_events">Event List</a>
+          <% if page == 'event_list' %>
+            <a class="nav-link active" href="/other_events">Event List</a>
+          <% end %>
+          <% if page != 'event_list' %>
+            <a class="nav-link" href="/other_events">Event List</a>
+          <% end %>
         </li>
+
         <li class="nav-item">
-          <a id="a-Point_Request" class="nav-link" href="/requests">Point Request</a>
+          <% if page == 'request_list' %>
+            <a class="nav-link active" href="/requests">Point Request</a>
+          <% end %>
+          <% if page != 'request_list' %>
+            <a class="nav-link" href="/requests">Point Request</a>
+          <% end %>
         </li>
                 
       </ul>
@@ -51,10 +72,10 @@
       <% if current_admin && page != "invalid_credentials" %>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a id="a-Help" class="nav-link" href="/help/about.html">Help</a>
+          <a class="nav-link" href="/people/new">New Members</a>
         </li>
         <li class="nav-item">
-          <a id="a-Officers" class="nav-link" href="/officers">Officers</a>
+          <a class="nav-link" href="/events/new">Start Event</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/admins/sign_out">Sign out</a>
@@ -64,7 +85,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <span class="nav-link">
-          <%= link_to "Login", admin_google_oauth2_omniauth_authorize_path, method: :post %>
+          <%= link_to "Admin Login", admin_google_oauth2_omniauth_authorize_path, method: :post %>
           </span>
         </li>
       </ul>
@@ -80,71 +101,11 @@
   <!-- Container wrapper -->
 </nav>
 <!-- Navbar -->
-</div>
-</div>
 
-<style>
-
-.flash__alert {
-    color: #721c24;
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
-}
-.flash__notice {
-    color: #004085;
-    background-color: #cce5ff;
-    border-color: #b8daff;
-}
-.flash__warning {
-    color: #856404;
-    background-color: #fff3cd;
-    border-color: #ffeeba;
-}
-
-.flash__success {
-    color: #155724;
-    background-color: #d4edda;
-    border-color: #c3e6cb;
-}
-.alert {
-  border-radius: 0px;
-  margin: 2px 0px;
-}
-
-</style>
 <% if flash.any? %>
     <% flash.each do |key, value| -%>
-    <section class="alert flash flash__<%= key %>"><%= value.html_safe %></section>
+    <section class="flash flash__<%= key %>"><%= value.html_safe %></section>
     <% end -%>
 <% end %>
 
 <br />
-
-<script>
-// Adding active highlight
-// active
-$( document ).ready(function() {
-  if (window.location.href.toLowerCase().endsWith("about.html")) {
-    $( "#a-Help" ).addClass( "active" );
-  }
-  if (window.location.href.toLowerCase().endsWith("meeting_participations")) {
-    $( "#a-Participation_List" ).addClass( "active" );
-  }
-  if (window.location.href.toLowerCase().endsWith("meetings")) {
-    $( "#a-Meetings" ).addClass( "active" );
-  }
-  if (window.location.href.toLowerCase().endsWith("other_events")) {
-    $( "#a-Event_List" ).addClass( "active" );
-  }
-  if (window.location.href.toLowerCase().endsWith("requests")) {
-    $( "#a-Point_Request" ).addClass( "active" );
-  }
-  if(window.location.pathname == "/students") {
-    $( "#a-Dashboard" ).addClass( "active" );
-  }
-  if(window.location.pathname == "/officers") {
-    $( "#a-Officers" ).addClass( "active" );
-  }
-});
-
-</script>

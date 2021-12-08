@@ -4,8 +4,7 @@
     <title>Tracker</title>
     <meta name="viewport" content="width=device-width,initial-scale=1"> 
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-    <script src="https://nightly.datatables.net/js/jquery.dataTables.min.js"></script>
-    <!--  <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"> </script> -->
+    <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"> </script>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -18,10 +17,6 @@
 
         .form-control {
           background: white!important;
-        }
-
-        [v-cloak] {
-          display: none;
         }
     </style>
 
@@ -42,33 +37,16 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css"
       rel="stylesheet"
     />
-    <!-- <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">  -->
-    <link rel="stylesheet" type="text/css" href="https://nightly.datatables.net/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
 
-    <style>
-    a > button {
-      color: white!important;
-    }
-
-    .v-application--wrap {
-      min-height: 0px!important;
-    }
-    </style>
-
+    
 
   </head>
 
   <body>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
-
-
-    <%= render partial: "partials/navbar", locals: {loggedIn: true, page:"event_list"} %>
-
     <div class="container">
       <%= yield %>
     </div>
-
 
 
 

@@ -1,16 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=El+Messiri');
 
-// html {
-//   box-sizing: border-box;
+html {
+  box-sizing: border-box;
 
-//   *,
-//   *:after,
-//   *:before {
-//     box-sizing: inherit;
-//   }
-// }
+  *,
+  *:after,
+  *:before {
+    box-sizing: inherit;
+  }
+}
 
-.content-wrapper {
+body {
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,15 +49,11 @@
 }
 
 .card__img {
-  // display: block;
-  // width: 20em;
-  // max-width: 100%;
-  // margin: 1em auto;
-  // border-radius: 2px;
-  max-width: 75%!important;
-  margin-left: 12.5%;
   display: block;
-
+  width: 20em;
+  max-width: 100%;
+  margin: 1em auto;
+  border-radius: 2px;
   -webkit-transform:rotate(270deg);  
   -moz-transform: rotate(270deg);  
   -ms-transform: rotate(270deg);  

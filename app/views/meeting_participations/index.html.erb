@@ -1,64 +1,35 @@
+<%= render partial: "partials/navbar", locals: {loggedIn: false, page:"meeting_participations"} %>
 
 <h1>Meeting Participations</h1>
 
-<br />
-<script>
-//    {
-//      text: 'UIN',
-//      align: 'start',
-//      value: 'UIN',
-//    },
-  var headers = [
-    {
-      text: 'First Name',
-      align: 'start',
-      value: 'first_name',
-    },
-    {
-      text: 'Last Name',
-      value: 'last_name',
-    },
-    {
-      text: 'Meeting',
-      value: 'meeting_name',
-    },
-    {
-      text: 'Time attended',
-      value: 'created_at',
-    },
-    {
-      text: 'Delete',
-      value: "deleteonly",
-    }
-  ];
+<%= form_with url: "/meeting_participations", method: :get do |form| %>
+  <%= form.label :id, "Meeting ID:" %>
+  <%= form.text_field :id %>
+  <%= form.submit "Show Participation" %>
+<% end %>
 
-  var d = <%=@meeting_participations.to_json.html_safe%>
-  var s = <%=@students.to_json.html_safe%>
+<table>
+  <thead>
+    <tr>
+      <th>Meeting</th>
+      <th>Uin</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-  var sMap = {}
-  for(var __ in s) {
-    var e = s[__]
-    sMap[e["UIN"]] = [e["first_name"], e["last_name"]]
-  }
-
-
-  d2 = []
-  for(var e in d){
-      var e2 = d[e]
-      e2.first_name = sMap[e2.UIN][0]
-      e2.last_name = sMap[e2.UIN][1]
-      d2.push(e2)
-  }
-
-  var url_path = "meeting_participations"
-</script>
-
-<%= render partial: "partials/crud_table" %>
+  <tbody>
+    <% @meeting_participations.each do |meeting_participation| %>
+      <tr>
+        <td><%= meeting_participation.meeting_id %></td>
+        <td><%= meeting_participation.UIN %></td>
+        <td><%= link_to 'Show', meeting_participation %></td>
+        <td><%= link_to 'Edit', edit_meeting_participation_path(meeting_participation) %></td>
+        <td><%= link_to 'Destroy', meeting_participation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <br>
 
-<%= link_to(new_meeting_participation_path) do %>
-  <button type="button" class="btn btn-primary btn-sm px-3"> 
-    Create New Meeting Participation
-  </button>
-<% end %>
+<%= link_to 'New Meeting Participation', new_meeting_participation_path %>

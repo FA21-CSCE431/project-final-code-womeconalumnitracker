@@ -10,7 +10,6 @@ class RequestsController < ApplicationController
   def index
     return nil if authenticate_officer == false
 
-    @students = Student.all
     @requests = Request.all
   end
 
@@ -23,19 +22,6 @@ class RequestsController < ApplicationController
       return nil
     end
     @request.student.increment!(:total_points, @request.points_requested)
-
-    if @request.request_type == "Volunteer"
-      @request.student.increment!(:volunteer_points, @request.points_requested)
-    end
-
-    if @request.request_type == "Social"
-      @request.student.increment!(:social_points, @request.points_requested)
-    end
-
-    if (@request.student.volunteer_points >= 3) && (@request.student.total_points >= 15) && (@request.student.social_points >= 1) && (@request.student.paid_dues) && !(@request.student.active_member)
-      @request.student.toggle!(:active_member)
-    end
-
     @request.destroy
     respond_to do |format|
       format.html { redirect_to requests_url, notice: 'Request was successfully accepted.' }
@@ -63,19 +49,15 @@ class RequestsController < ApplicationController
 
   # GET /requests/new
   def new
-    @other_events = OtherEvent.all
     @request = Request.new
   end
 
   # GET /requests/1/edit
-  def edit
-    @other_events = OtherEvent.all
-  end
+  def edit; end
 
   # POST /requests or /requests.json
   def create
     @request = Request.new(request_params)
-    @other_events = OtherEvent.all
 
     respond_to do |format|
       if @request.save
@@ -90,7 +72,6 @@ class RequestsController < ApplicationController
 
   # PATCH/PUT /requests/1 or /requests/1.json
   def update
-    @other_events = OtherEvent.all
     if authenticate_officer == false
       respond_to do |format|
         format.html { redirect_to root_path, alert: 'You are not authorized to perform this action!' }
@@ -141,8 +122,9 @@ class RequestsController < ApplicationController
     false
   end
 
-    # Only allow a list of trusted parameters through.
-    def request_params
-      params.require(:request).permit(:event_id, :UIN, :date_of_request, :points_requested, :request_time, :approved, :id, :request_type)
-    end
+  # Only allow a list of trusted parameters through.
+  def request_params
+    params.require(:request).permit(:event_id, :UIN, :date_of_request, :points_requested, :request_time, :approved,
+                                    :id)
+  end
 end
