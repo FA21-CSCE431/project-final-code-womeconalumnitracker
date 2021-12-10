@@ -58,6 +58,25 @@ rails s -b 0.0.0.0
 rails rspec .
 
 ```
+# Deployment to Heroku
+1. Use Docker image from Book Assignment
+2. Use $ git checkout <branch> to switch branches
+3. We want to run the migration on each deploy automatically.
+Create a file named Procfile in the root dir with this line of code
+```
+ release rails db:migrate
+```
+5. Create a root route in config/routes.rb
+6. Save changes and push to origin/branch 
+```
+git add . 
+git commit -m “add Procfile and route”
+git push origin test
+```
+7. From Heroku Dashboard
+ 
+
+
 # CI/CD Process
 Set up CI/CD through GitHub Actions
 Go to /.github/workflows/main.yml
