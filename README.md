@@ -74,8 +74,27 @@ git commit -m “add Procfile and route”
 git push origin test
 ```
 7. From Heroku Dashboard  
- ![text](picture/1.PNG?raw=true)
+ Click the New button on the top right of the app list and select Create new pipeline  
+ ![text](picture/1.PNG?raw=true)    
+ ![text](picture/2.PNG?raw=true)  
+ 
+8. Enable Review Apps. Do NOT select any options for this assignment. Click “Enable Review Apps” right away.  
+![text](picture/3.PNG?raw=true)  
+ 
+9.  Click “New app” in Review Apps. Choose the test branch. After you click “Create”, Heroku will start deploying immediately. Every time you make changes to the test branch, it triggers automatic deployment.  
+![text](picture/4.PNG?raw=true)  
+ 
+10. Create app for staging  
+![text](picture/5.PNG?raw=true)  
+ 
+11. Click on the stage-test-app-1. Click Deploy. Choose the main branch for Automatic Deploys.  
+![text](picture/6.PNG?raw=true)  
+The app is now ready for deployment  
+ 
+12. When the staging app is ready, open the app and check if everything looks good. Then promote it to the production area.  
+ ![text](picture/7.PNG?raw=true) 
 
+ 
 
 # CI/CD Process
 Set up CI/CD through GitHub Actions
