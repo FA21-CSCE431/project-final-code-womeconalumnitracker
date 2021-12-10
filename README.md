@@ -97,7 +97,8 @@ The app is now ready for deployment
  
 
 # CI/CD Process
-Set up CI/CD through GitHub Actions
+Set up CI/CD through GitHub Actions  
+Heroku was used to set up CD, as shown in Deployment to Heroku above  
 Go to /.github/workflows/main.yml
 
 ## Step 1: set up environment variables
