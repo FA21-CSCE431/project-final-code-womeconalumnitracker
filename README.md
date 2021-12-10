@@ -73,8 +73,8 @@ git add .
 git commit -m “add Procfile and route”
 git push origin test
 ```
-7. From Heroku Dashboard
- ![what](picture/1.PNG?raw=true)
+7. From Heroku Dashboard  
+ ![text](picture/1.PNG?raw=true)
 
 
 # CI/CD Process
